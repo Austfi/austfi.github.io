@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_6558e9a703e1f835772dd500b94d2bf8 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-groupedlayercontrol/0.6.1/leaflet.groupedlayercontrol.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-groupedlayercontrol/0.6.1/leaflet.groupedlayercontrol.min.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/ardhi/Leaflet.MousePosition/src/L.Control.MousePosition.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ardhi/Leaflet.MousePosition/src/L.Control.MousePosition.min.css"/>
+</head>
+<body>
+    
+    
+             <h3 align="center" style="font-size:16px"><b>CAIC Weather Stations, Forecast Locations and Webcams</b></h3>
+             
+    
+            <div class="folium-map" id="map_6558e9a703e1f835772dd500b94d2bf8" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_6558e9a703e1f835772dd500b94d2bf8 = L.map(
+                "map_6558e9a703e1f835772dd500b94d2bf8",
+                {
+                    center: [39.5501, -106.0667],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 9,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+            L.control.scale().addTo(map_6558e9a703e1f835772dd500b94d2bf8);
+
+            
+
+        
+    
+            var tile_layer_223dfaf5a52ca489f10e565415447116 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_223dfaf5a52ca489f10e565415447116.addTo(map_6558e9a703e1f835772dd500b94d2bf8);
+        
+    
+            var tile_layer_246757712590816f0f254f92a0cb408e = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_246757712590816f0f254f92a0cb408e.addTo(map_6558e9a703e1f835772dd500b94d2bf8);
+        
+    
+            var tile_layer_12ca5d6d05492a9b76355797ddce96ea = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {"attribution": "Tiles \u0026copy; Esri \u0026mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community", "detectRetina": false, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_12ca5d6d05492a9b76355797ddce96ea.addTo(map_6558e9a703e1f835772dd500b94d2bf8);
+        
+    
+            var tile_layer_170cf571b1908dfed8847c0824090c0c = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+                {"attribution": "Tiles \u0026copy; Esri \u0026mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community", "detectRetina": false, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_170cf571b1908dfed8847c0824090c0c.addTo(map_6558e9a703e1f835772dd500b94d2bf8);
+        
+    
+            var feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a = L.featureGroup(
+                {}
+            );
+        
+    
+            var marker_a86c2dc8def69199b5012f395bfff587 = L.marker(
+                [40.05361, -106.36889],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_1e23fefc353cf37f8ff40211191a7edf = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_a86c2dc8def69199b5012f395bfff587.setIcon(icon_1e23fefc353cf37f8ff40211191a7edf);
+        
+    
+        var popup_078241c66df464295c9aa95de20a0c93 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_48e97d0c431d83afa33e3c623a784536 = $(`<div id="html_48e97d0c431d83afa33e3c623a784536" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Mc Elroy/Kremmli</b><br>                 Provider: METAR<br>                 Lat: 40.05361, Lon: -106.36889<br>                 Elevation: 7412 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=K20V&date=2024-09-04+12:07&unit=e&area=caic&title=Mc+Elroy/Kremmli+%28METAR%29+7412+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=K20V&date=2024-09-04+12:07&elev=7412&unit=e&area=caic&title=Mc+Elroy/Kremmli+%28METAR%29+7412+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Mc+Elroy/Kremmli+%28METAR%29+7412+ft&st=K20V&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Mc+Elroy/Kremmli+%28METAR%29+7412+ft&st=K20V&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_078241c66df464295c9aa95de20a0c93.setContent(html_48e97d0c431d83afa33e3c623a784536);
+            
+        
+
+        marker_a86c2dc8def69199b5012f395bfff587.bindPopup(popup_078241c66df464295c9aa95de20a0c93)
+        ;
+
+        
+    
+    
+            marker_a86c2dc8def69199b5012f395bfff587.bindTooltip(
+                `<div>
+                     Mc Elroy/Kremmli
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_dc6f83cd4cc741c69aa79c3367ab434e = L.marker(
+                [39.91342, -106.32601],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_557c5fab45a88f914239b947c1d4d086 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_dc6f83cd4cc741c69aa79c3367ab434e.setIcon(icon_557c5fab45a88f914239b947c1d4d086);
+        
+    
+        var popup_ebda2c67fb8e7b679e54faafbaafeba7 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_c7513d048c512099a6d82bf151fe1205 = $(`<div id="html_c7513d048c512099a6d82bf151fe1205" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>SH-9 Sum/Grand CO L</b><br>                 Provider: CDOT<br>                 Lat: 39.91342, Lon: -106.32601<br>                 Elevation: 7797 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=CO140&date=2024-09-04+12:07&unit=e&area=caic&title=SH-9+Sum%2FGrand+CO+LN+%28CDOT%29+7797+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=CO140&date=2024-09-04+12:07&elev=7797&unit=e&area=caic&title=SH-9+Sum%2FGrand+CO+LN+%28CDOT%29+7797+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=SH-9+Sum%2FGrand+CO+LN+%28CDOT%29+7797+ft&st=CO140&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=SH-9+Sum%2FGrand+CO+LN+%28CDOT%29+7797+ft&st=CO140&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_ebda2c67fb8e7b679e54faafbaafeba7.setContent(html_c7513d048c512099a6d82bf151fe1205);
+            
+        
+
+        marker_dc6f83cd4cc741c69aa79c3367ab434e.bindPopup(popup_ebda2c67fb8e7b679e54faafbaafeba7)
+        ;
+
+        
+    
+    
+            marker_dc6f83cd4cc741c69aa79c3367ab434e.bindTooltip(
+                `<div>
+                     SH-9 Sum/Grand CO L
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_282832840d2cb5e13e3f9182e7d90a1d = L.marker(
+                [39.87361, -106.33056],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_bdf704117b1c915abb6286735ccdbc32 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_282832840d2cb5e13e3f9182e7d90a1d.setIcon(icon_bdf704117b1c915abb6286735ccdbc32);
+        
+    
+        var popup_5a886426f57c602d8ef9297f78465e0f = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_a2519c0178ec5de9a8955e0246fe8d6f = $(`<div id="html_a2519c0178ec5de9a8955e0246fe8d6f" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Elliot Ck Canal nr</b><br>                 Provider: MesoWest<br>                 Lat: 39.87361, Lon: -106.33056<br>                 Elevation: 7995 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=ELTC2&date=2024-09-04+12:07&unit=e&area=caic&title=Elliot+Ck+Canal+nr+Green+Mountai+%28MesoWest%29+7995+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=ELTC2&date=2024-09-04+12:07&elev=7995&unit=e&area=caic&title=Elliot+Ck+Canal+nr+Green+Mountai+%28MesoWest%29+7995+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Elliot+Ck+Canal+nr+Green+Mountai+%28MesoWest%29+7995+ft&st=ELTC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Elliot+Ck+Canal+nr+Green+Mountai+%28MesoWest%29+7995+ft&st=ELTC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_5a886426f57c602d8ef9297f78465e0f.setContent(html_a2519c0178ec5de9a8955e0246fe8d6f);
+            
+        
+
+        marker_282832840d2cb5e13e3f9182e7d90a1d.bindPopup(popup_5a886426f57c602d8ef9297f78465e0f)
+        ;
+
+        
+    
+    
+            marker_282832840d2cb5e13e3f9182e7d90a1d.bindTooltip(
+                `<div>
+                     Elliot Ck Canal nr
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_02acb9657ad0e9fcb2c9449a2e13359f = L.marker(
+                [39.59917, -106.51142],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_67e4d6dcee278a2cf81d75bbee1b7fe6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_02acb9657ad0e9fcb2c9449a2e13359f.setIcon(icon_67e4d6dcee278a2cf81d75bbee1b7fe6);
+        
+    
+        var popup_baf33165344d9a56b257e1066b79e8a0 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_0a4e49a5f925acf1441ba61f07f7ee8c = $(`<div id="html_0a4e49a5f925acf1441ba61f07f7ee8c" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Beaver Ck Village</b><br>                 Provider: SNOTEL<br>                 Lat: 39.59917, Lon: -106.51142<br>                 Elevation: 8500 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=BCVC2&date=2024-09-04+12:07&unit=e&area=caic&title=Beaver+Ck+Village+%28SNOTEL%29+8500+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=BCVC2&date=2024-09-04+12:07&elev=8500&unit=e&area=caic&title=Beaver+Ck+Village+%28SNOTEL%29+8500+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Beaver+Ck+Village+%28SNOTEL%29+8500+ft&st=BCVC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Beaver+Ck+Village+%28SNOTEL%29+8500+ft&st=BCVC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_baf33165344d9a56b257e1066b79e8a0.setContent(html_0a4e49a5f925acf1441ba61f07f7ee8c);
+            
+        
+
+        marker_02acb9657ad0e9fcb2c9449a2e13359f.bindPopup(popup_baf33165344d9a56b257e1066b79e8a0)
+        ;
+
+        
+    
+    
+            marker_02acb9657ad0e9fcb2c9449a2e13359f.bindTooltip(
+                `<div>
+                     Beaver Ck Village
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_dfd951c8e8886f6f008ac39e25fd7e2e = L.marker(
+                [40.1395, -106.5312],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_24d06139c7e56a39b4438b7fd8549676 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_dfd951c8e8886f6f008ac39e25fd7e2e.setIcon(icon_24d06139c7e56a39b4438b7fd8549676);
+        
+    
+        var popup_8005e07aebfc770199896ecec158deaf = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_f6198288ca993631d18fc7a839d8b0cb = $(`<div id="html_f6198288ca993631d18fc7a839d8b0cb" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>CW9561 Kremmling</b><br>                 Provider: APRSWXNET<br>                 Lat: 40.1395, Lon: -106.5312<br>                 Elevation: 8626 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=C9561&date=2024-09-04+12:07&unit=e&area=caic&title=CW9561+Kremmling+%28APRSWXNET%29+8626+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=C9561&date=2024-09-04+12:07&elev=8626&unit=e&area=caic&title=CW9561+Kremmling+%28APRSWXNET%29+8626+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=CW9561+Kremmling+%28APRSWXNET%29+8626+ft&st=C9561&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=CW9561+Kremmling+%28APRSWXNET%29+8626+ft&st=C9561&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_8005e07aebfc770199896ecec158deaf.setContent(html_f6198288ca993631d18fc7a839d8b0cb);
+            
+        
+
+        marker_dfd951c8e8886f6f008ac39e25fd7e2e.bindPopup(popup_8005e07aebfc770199896ecec158deaf)
+        ;
+
+        
+    
+    
+            marker_dfd951c8e8886f6f008ac39e25fd7e2e.bindTooltip(
+                `<div>
+                     CW9561 Kremmling
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_565e0bea9986bdcb758d984486c694cb = L.marker(
+                [39.62122, -106.2785],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_429b83cc9b072512b6f5df33ff2c6bfd = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_565e0bea9986bdcb758d984486c694cb.setIcon(icon_429b83cc9b072512b6f5df33ff2c6bfd);
+        
+    
+        var popup_f42b66305440dc8bb542feb3018be032 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_77e750a37f0e6b50bdad6d697f40ec39 = $(`<div id="html_77e750a37f0e6b50bdad6d697f40ec39" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>0.5 mi E of Vail -</b><br>                 Provider: CDOT<br>                 Lat: 39.62122, Lon: -106.2785<br>                 Elevation: 8776 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=CO160&date=2024-09-04+12:07&unit=e&area=caic&title=0.5+mi+E+of+Vail+-+RTR+%28CDOT%29+8776+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=CO160&date=2024-09-04+12:07&elev=8776&unit=e&area=caic&title=0.5+mi+E+of+Vail+-+RTR+%28CDOT%29+8776+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=0.5+mi+E+of+Vail+-+RTR+%28CDOT%29+8776+ft&st=CO160&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=0.5+mi+E+of+Vail+-+RTR+%28CDOT%29+8776+ft&st=CO160&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_f42b66305440dc8bb542feb3018be032.setContent(html_77e750a37f0e6b50bdad6d697f40ec39);
+            
+        
+
+        marker_565e0bea9986bdcb758d984486c694cb.bindPopup(popup_f42b66305440dc8bb542feb3018be032)
+        ;
+
+        
+    
+    
+            marker_565e0bea9986bdcb758d984486c694cb.bindTooltip(
+                `<div>
+                     0.5 mi E of Vail -
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_264d54d8b41bcbf4fc9a405f59fdbd32 = L.marker(
+                [39.7956, -106.0273],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_2ec9084ea5dbcc08d0d7411da62bfcfa = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_264d54d8b41bcbf4fc9a405f59fdbd32.setIcon(icon_2ec9084ea5dbcc08d0d7411da62bfcfa);
+        
+    
+        var popup_bdb634a956bdcdc8648e9adab491ab10 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_fbdcaaa16ad18ff61c2056f901980ac3 = $(`<div id="html_fbdcaaa16ad18ff61c2056f901980ac3" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Middle Fork Camp</b><br>                 Provider: SNOTEL<br>                 Lat: 39.7956, Lon: -106.0273<br>                 Elevation: 8940 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=MFKC2&date=2024-09-04+12:07&unit=e&area=caic&title=Middle+Fork+Camp+%28SNOTEL%29+8940+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=MFKC2&date=2024-09-04+12:07&elev=8940&unit=e&area=caic&title=Middle+Fork+Camp+%28SNOTEL%29+8940+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Middle+Fork+Camp+%28SNOTEL%29+8940+ft&st=MFKC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Middle+Fork+Camp+%28SNOTEL%29+8940+ft&st=MFKC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_bdb634a956bdcdc8648e9adab491ab10.setContent(html_fbdcaaa16ad18ff61c2056f901980ac3);
+            
+        
+
+        marker_264d54d8b41bcbf4fc9a405f59fdbd32.bindPopup(popup_bdb634a956bdcdc8648e9adab491ab10)
+        ;
+
+        
+    
+    
+            marker_264d54d8b41bcbf4fc9a405f59fdbd32.bindTooltip(
+                `<div>
+                     Middle Fork Camp
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_497dc858c7684087562bb3e9b6a02fa6 = L.marker(
+                [39.62611, -106.03556],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_3fb5f66360303d1b0d4d0f8356da089f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_497dc858c7684087562bb3e9b6a02fa6.setIcon(icon_3fb5f66360303d1b0d4d0f8356da089f);
+        
+    
+        var popup_770a5d6f079b03e07e3daa4c8ec70538 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_77266b98598f79d762c78f558a465228 = $(`<div id="html_77266b98598f79d762c78f558a465228" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Dillon 1E</b><br>                 Provider: MesoWest<br>                 Lat: 39.62611, Lon: -106.03556<br>                 Elevation: 9065 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=DLLC2&date=2024-09-04+12:07&unit=e&area=caic&title=Dillon+1E+%28MesoWest%29+9065+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=DLLC2&date=2024-09-04+12:07&elev=9065&unit=e&area=caic&title=Dillon+1E+%28MesoWest%29+9065+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Dillon+1E+%28MesoWest%29+9065+ft&st=DLLC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Dillon+1E+%28MesoWest%29+9065+ft&st=DLLC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_770a5d6f079b03e07e3daa4c8ec70538.setContent(html_77266b98598f79d762c78f558a465228);
+            
+        
+
+        marker_497dc858c7684087562bb3e9b6a02fa6.bindPopup(popup_770a5d6f079b03e07e3daa4c8ec70538)
+        ;
+
+        
+    
+    
+            marker_497dc858c7684087562bb3e9b6a02fa6.bindTooltip(
+                `<div>
+                     Dillon 1E
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c6f35ffd66fff28117f672dc57f3eded = L.marker(
+                [39.62764, -106.45217],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_0acdac283fc01733ccfeec2244e6e4ca = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_c6f35ffd66fff28117f672dc57f3eded.setIcon(icon_0acdac283fc01733ccfeec2244e6e4ca);
+        
+    
+        var popup_722375cc2b8cabd9f2c6339017865dc4 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_2d9fbaa9975566fce3fecc7bfe552561 = $(`<div id="html_2d9fbaa9975566fce3fecc7bfe552561" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Dowd Junction</b><br>                 Provider: RAWS<br>                 Lat: 39.62764, Lon: -106.45217<br>                 Elevation: 9068 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=DJTC2&date=2024-09-04+12:07&unit=e&area=caic&title=Dowd+Junction+%28RAWS%29+9068+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=DJTC2&date=2024-09-04+12:07&elev=9068&unit=e&area=caic&title=Dowd+Junction+%28RAWS%29+9068+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Dowd+Junction+%28RAWS%29+9068+ft&st=DJTC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Dowd+Junction+%28RAWS%29+9068+ft&st=DJTC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_722375cc2b8cabd9f2c6339017865dc4.setContent(html_2d9fbaa9975566fce3fecc7bfe552561);
+            
+        
+
+        marker_c6f35ffd66fff28117f672dc57f3eded.bindPopup(popup_722375cc2b8cabd9f2c6339017865dc4)
+        ;
+
+        
+    
+    
+            marker_c6f35ffd66fff28117f672dc57f3eded.bindTooltip(
+                `<div>
+                     Dowd Junction
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_8af64191e2aa5b9276594cfe7e121be0 = L.marker(
+                [39.58391, -106.10911],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_12418edfc5829536b8bf2ade3940b6c1 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_8af64191e2aa5b9276594cfe7e121be0.setIcon(icon_12418edfc5829536b8bf2ade3940b6c1);
+        
+    
+        var popup_3536eb8309d79907dbb37d718c0d9c30 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_d955fb238c66f94a7434ae6c8704a70b = $(`<div id="html_d955fb238c66f94a7434ae6c8704a70b" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>0.9 mi W of CO-9 Fr</b><br>                 Provider: CDOT<br>                 Lat: 39.58391, Lon: -106.10911<br>                 Elevation: 9134 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=CO153&date=2024-09-04+12:07&unit=e&area=caic&title=0.9+mi+W+of+CO-9+Frisco+%28CDOT%29+9134+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=CO153&date=2024-09-04+12:07&elev=9134&unit=e&area=caic&title=0.9+mi+W+of+CO-9+Frisco+%28CDOT%29+9134+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=0.9+mi+W+of+CO-9+Frisco+%28CDOT%29+9134+ft&st=CO153&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=0.9+mi+W+of+CO-9+Frisco+%28CDOT%29+9134+ft&st=CO153&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_3536eb8309d79907dbb37d718c0d9c30.setContent(html_d955fb238c66f94a7434ae6c8704a70b);
+            
+        
+
+        marker_8af64191e2aa5b9276594cfe7e121be0.bindPopup(popup_3536eb8309d79907dbb37d718c0d9c30)
+        ;
+
+        
+    
+    
+            marker_8af64191e2aa5b9276594cfe7e121be0.bindTooltip(
+                `<div>
+                     0.9 mi W of CO-9 Fr
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_2f0661575a675f3a3c6231bedc9d809e = L.marker(
+                [39.56317, -106.12958],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_d589ad3e73992658fff964c26856489e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_2f0661575a675f3a3c6231bedc9d809e.setIcon(icon_d589ad3e73992658fff964c26856489e);
+        
+    
+        var popup_5b72bb6b7a781cdb3f3231d17e692abe = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_45e15f1ead028dc772f5f9e0779fe104 = $(`<div id="html_45e15f1ead028dc772f5f9e0779fe104" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>1.3 mi W of Frisco</b><br>                 Provider: CDOT<br>                 Lat: 39.56317, Lon: -106.12958<br>                 Elevation: 9256 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=CO155&date=2024-09-04+12:07&unit=e&area=caic&title=1.3+mi+W+of+Frisco+%28CDOT%29+9256+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=CO155&date=2024-09-04+12:07&elev=9256&unit=e&area=caic&title=1.3+mi+W+of+Frisco+%28CDOT%29+9256+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=1.3+mi+W+of+Frisco+%28CDOT%29+9256+ft&st=CO155&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=1.3+mi+W+of+Frisco+%28CDOT%29+9256+ft&st=CO155&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_5b72bb6b7a781cdb3f3231d17e692abe.setContent(html_45e15f1ead028dc772f5f9e0779fe104);
+            
+        
+
+        marker_2f0661575a675f3a3c6231bedc9d809e.bindPopup(popup_5b72bb6b7a781cdb3f3231d17e692abe)
+        ;
+
+        
+    
+    
+            marker_2f0661575a675f3a3c6231bedc9d809e.bindTooltip(
+                `<div>
+                     1.3 mi W of Frisco
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_9690f3d29508c167ab12fb1066530a18 = L.marker(
+                [39.60992, -105.95394],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_b0e7fd6967e0d425fc2741397986de51 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_9690f3d29508c167ab12fb1066530a18.setIcon(icon_b0e7fd6967e0d425fc2741397986de51);
+        
+    
+        var popup_7a8ae9eefb53efad369fc5419d0bb434 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_3ff09c371c016579fd15f07d538c85db = $(`<div id="html_3ff09c371c016579fd15f07d538c85db" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Keystone</b><br>                 Provider: PWS<br>                 Lat: 39.60992, Lon: -105.95394<br>                 Elevation: 9370 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=CAKEY&date=2024-09-04+12:07&unit=e&area=caic&title=Keystone+%28PWS%29+9370+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=CAKEY&date=2024-09-04+12:07&elev=9370&unit=e&area=caic&title=Keystone+%28PWS%29+9370+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Keystone+%28PWS%29+9370+ft&st=CAKEY&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Keystone+%28PWS%29+9370+ft&st=CAKEY&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_7a8ae9eefb53efad369fc5419d0bb434.setContent(html_3ff09c371c016579fd15f07d538c85db);
+            
+        
+
+        marker_9690f3d29508c167ab12fb1066530a18.bindPopup(popup_7a8ae9eefb53efad369fc5419d0bb434)
+        ;
+
+        
+    
+    
+            marker_9690f3d29508c167ab12fb1066530a18.bindTooltip(
+                `<div>
+                     Keystone
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1018a349075f6e24ee575d36d9fdbf35 = L.marker(
+                [39.64654, -106.02644],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_0740d623603ef6cdf0d10ea79ed3438c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_1018a349075f6e24ee575d36d9fdbf35.setIcon(icon_0740d623603ef6cdf0d10ea79ed3438c);
+        
+    
+        var popup_1459e58a7c1e214f9572ac3a4809b700 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_e43e21674a2d9fb960d91ce541ffc134 = $(`<div id="html_e43e21674a2d9fb960d91ce541ffc134" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>2.4 mi E of Silvert</b><br>                 Provider: CDOT<br>                 Lat: 39.64654, Lon: -106.02644<br>                 Elevation: 9390 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=CO158&date=2024-09-04+12:07&unit=e&area=caic&title=2.4+mi+E+of+Silverthorne+%28CDOT%29+9390+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=CO158&date=2024-09-04+12:07&elev=9390&unit=e&area=caic&title=2.4+mi+E+of+Silverthorne+%28CDOT%29+9390+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=2.4+mi+E+of+Silverthorne+%28CDOT%29+9390+ft&st=CO158&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=2.4+mi+E+of+Silverthorne+%28CDOT%29+9390+ft&st=CO158&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_1459e58a7c1e214f9572ac3a4809b700.setContent(html_e43e21674a2d9fb960d91ce541ffc134);
+            
+        
+
+        marker_1018a349075f6e24ee575d36d9fdbf35.bindPopup(popup_1459e58a7c1e214f9572ac3a4809b700)
+        ;
+
+        
+    
+    
+            marker_1018a349075f6e24ee575d36d9fdbf35.bindTooltip(
+                `<div>
+                     2.4 mi E of Silvert
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_14df4ceb697fc87bb3d81d4f2802b020 = L.marker(
+                [39.71796, -106.15802],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_07d070610b1efa088a53f2abec8015c0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_14df4ceb697fc87bb3d81d4f2802b020.setIcon(icon_07d070610b1efa088a53f2abec8015c0);
+        
+    
+        var popup_089297fd1628b002be0aedf2078e588c = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_6639f3353fd0e90cd272c438f0625bcc = $(`<div id="html_6639f3353fd0e90cd272c438f0625bcc" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Summit Ranch</b><br>                 Provider: SNOTEL<br>                 Lat: 39.71796, Lon: -106.15802<br>                 Elevation: 9400 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=SUMC2&date=2024-09-04+12:07&unit=e&area=caic&title=Summit+Ranch+%28SNOTEL%29+9400+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=SUMC2&date=2024-09-04+12:07&elev=9400&unit=e&area=caic&title=Summit+Ranch+%28SNOTEL%29+9400+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Summit+Ranch+%28SNOTEL%29+9400+ft&st=SUMC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Summit+Ranch+%28SNOTEL%29+9400+ft&st=SUMC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_089297fd1628b002be0aedf2078e588c.setContent(html_6639f3353fd0e90cd272c438f0625bcc);
+            
+        
+
+        marker_14df4ceb697fc87bb3d81d4f2802b020.bindPopup(popup_089297fd1628b002be0aedf2078e588c)
+        ;
+
+        
+    
+    
+            marker_14df4ceb697fc87bb3d81d4f2802b020.bindTooltip(
+                `<div>
+                     Summit Ranch
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d7a83939095f60682556bae0979286ac = L.marker(
+                [39.60468, -106.54128],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_0d6b24c43e07f609d5d412a7760a340e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_d7a83939095f60682556bae0979286ac.setIcon(icon_0d6b24c43e07f609d5d412a7760a340e);
+        
+    
+        var popup_b9e8b568a39a24e869f62874a9fc6d5f = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_a45902daf856e6644deb4fb39e64ce98 = $(`<div id="html_a45902daf856e6644deb4fb39e64ce98" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Mccoy Park</b><br>                 Provider: SNOTEL<br>                 Lat: 39.60468, Lon: -106.54128<br>                 Elevation: 9480 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=MCYC2&date=2024-09-04+12:07&unit=e&area=caic&title=Mccoy+Park+%28SNOTEL%29+9480+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=MCYC2&date=2024-09-04+12:07&elev=9480&unit=e&area=caic&title=Mccoy+Park+%28SNOTEL%29+9480+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Mccoy+Park+%28SNOTEL%29+9480+ft&st=MCYC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Mccoy+Park+%28SNOTEL%29+9480+ft&st=MCYC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_b9e8b568a39a24e869f62874a9fc6d5f.setContent(html_a45902daf856e6644deb4fb39e64ce98);
+            
+        
+
+        marker_d7a83939095f60682556bae0979286ac.bindPopup(popup_b9e8b568a39a24e869f62874a9fc6d5f)
+        ;
+
+        
+    
+    
+            marker_d7a83939095f60682556bae0979286ac.bindTooltip(
+                `<div>
+                     Mccoy Park
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6554bf5c6132d91d2db3373d1e1205cb = L.marker(
+                [39.51496, -106.14546],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_b95adb320f724a16ab0697e5e3f5872b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_6554bf5c6132d91d2db3373d1e1205cb.setIcon(icon_b95adb320f724a16ab0697e5e3f5872b);
+        
+    
+        var popup_bc89a4c76eb16e99130f3c72bddc8096 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_72aae71ee91af39e83af1f1d5f2d8648 = $(`<div id="html_72aae71ee91af39e83af1f1d5f2d8648" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>0.6 mi E of CO-91 C</b><br>                 Provider: CDOT<br>                 Lat: 39.51496, Lon: -106.14546<br>                 Elevation: 9668 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=CO154&date=2024-09-04+12:07&unit=e&area=caic&title=0.6+mi+E+of+CO-91+Copper+Mtn+%28CDOT%29+9668+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=CO154&date=2024-09-04+12:07&elev=9668&unit=e&area=caic&title=0.6+mi+E+of+CO-91+Copper+Mtn+%28CDOT%29+9668+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=0.6+mi+E+of+CO-91+Copper+Mtn+%28CDOT%29+9668+ft&st=CO154&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=0.6+mi+E+of+CO-91+Copper+Mtn+%28CDOT%29+9668+ft&st=CO154&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_bc89a4c76eb16e99130f3c72bddc8096.setContent(html_72aae71ee91af39e83af1f1d5f2d8648);
+            
+        
+
+        marker_6554bf5c6132d91d2db3373d1e1205cb.bindPopup(popup_bc89a4c76eb16e99130f3c72bddc8096)
+        ;
+
+        
+    
+    
+            marker_6554bf5c6132d91d2db3373d1e1205cb.bindTooltip(
+                `<div>
+                     0.6 mi E of CO-91 C
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a6b89e761656240b8913f642dcbb5d29 = L.marker(
+                [39.66206, -105.98276],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_f1a70a48afe701d982a833583ab5445f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_a6b89e761656240b8913f642dcbb5d29.setIcon(icon_f1a70a48afe701d982a833583ab5445f);
+        
+    
+        var popup_ddbcad0a23eb8639d0a8980e2f8e6497 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_55a5a1f3d2466fce9487ed95e935dd4d = $(`<div id="html_55a5a1f3d2466fce9487ed95e935dd4d" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>2.9 mi W of EJMT -</b><br>                 Provider: CDOT<br>                 Lat: 39.66206, Lon: -105.98276<br>                 Elevation: 10208 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=CO159&date=2024-09-04+12:07&unit=e&area=caic&title=2.9+mi+W+of+EJMT+-+The+Box+%28CDOT%29+10208+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=CO159&date=2024-09-04+12:07&elev=10208&unit=e&area=caic&title=2.9+mi+W+of+EJMT+-+The+Box+%28CDOT%29+10208+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=2.9+mi+W+of+EJMT+-+The+Box+%28CDOT%29+10208+ft&st=CO159&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=2.9+mi+W+of+EJMT+-+The+Box+%28CDOT%29+10208+ft&st=CO159&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_ddbcad0a23eb8639d0a8980e2f8e6497.setContent(html_55a5a1f3d2466fce9487ed95e935dd4d);
+            
+        
+
+        marker_a6b89e761656240b8913f642dcbb5d29.bindPopup(popup_ddbcad0a23eb8639d0a8980e2f8e6497)
+        ;
+
+        
+    
+    
+            marker_a6b89e761656240b8913f642dcbb5d29.bindTooltip(
+                `<div>
+                     2.9 mi W of EJMT -
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_3fb25685912ebd00323e98b4b6fca176 = L.marker(
+                [39.56594, -106.23739],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_1ddb029d479ab866b71c814f901dc8b0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_3fb25685912ebd00323e98b4b6fca176.setIcon(icon_1ddb029d479ab866b71c814f901dc8b0);
+        
+    
+        var popup_39987b57451c56f1371b3ceb9db9c2f5 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_276bc71e221abd503c7b065d444d7801 = $(`<div id="html_276bc71e221abd503c7b065d444d7801" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>2.1 mi W of Vail Pa</b><br>                 Provider: CDOT<br>                 Lat: 39.56594, Lon: -106.23739<br>                 Elevation: 10214 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=CO172&date=2024-09-04+12:07&unit=e&area=caic&title=2.1+mi+W+of+Vail+Pass+Summit+%28CDOT%29+10214+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=CO172&date=2024-09-04+12:07&elev=10214&unit=e&area=caic&title=2.1+mi+W+of+Vail+Pass+Summit+%28CDOT%29+10214+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=2.1+mi+W+of+Vail+Pass+Summit+%28CDOT%29+10214+ft&st=CO172&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=2.1+mi+W+of+Vail+Pass+Summit+%28CDOT%29+10214+ft&st=CO172&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_39987b57451c56f1371b3ceb9db9c2f5.setContent(html_276bc71e221abd503c7b065d444d7801);
+            
+        
+
+        marker_3fb25685912ebd00323e98b4b6fca176.bindPopup(popup_39987b57451c56f1371b3ceb9db9c2f5)
+        ;
+
+        
+    
+    
+            marker_3fb25685912ebd00323e98b4b6fca176.bindTooltip(
+                `<div>
+                     2.1 mi W of Vail Pa
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_33e3bb5b2df442560146a0e8c06c08f3 = L.marker(
+                [39.40861, -106.04583],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_4cd13b8a483ea18732849633c95c9a62 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_33e3bb5b2df442560146a0e8c06c08f3.setIcon(icon_4cd13b8a483ea18732849633c95c9a62);
+        
+    
+        var popup_0775531b5689efa307f8a1d05c068893 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_13d7d1800bc34aadb11a3f8e46df7b86 = $(`<div id="html_13d7d1800bc34aadb11a3f8e46df7b86" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Breckenridge 5S</b><br>                 Provider: HADS<br>                 Lat: 39.40861, Lon: -106.04583<br>                 Elevation: 10230 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=BKRC2&date=2024-09-04+12:07&unit=e&area=caic&title=Breckenridge+5S+%28HADS%29+10230+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=BKRC2&date=2024-09-04+12:07&elev=10230&unit=e&area=caic&title=Breckenridge+5S+%28HADS%29+10230+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Breckenridge+5S+%28HADS%29+10230+ft&st=BKRC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Breckenridge+5S+%28HADS%29+10230+ft&st=BKRC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_0775531b5689efa307f8a1d05c068893.setContent(html_13d7d1800bc34aadb11a3f8e46df7b86);
+            
+        
+
+        marker_33e3bb5b2df442560146a0e8c06c08f3.bindPopup(popup_0775531b5689efa307f8a1d05c068893)
+        ;
+
+        
+    
+    
+            marker_33e3bb5b2df442560146a0e8c06c08f3.bindTooltip(
+                `<div>
+                     Breckenridge 5S
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_060e62dc3433cf71a4b150adbabe4fab = L.marker(
+                [39.57861, -106.24722],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_84d904b84670a230aa457e45549b5014 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_060e62dc3433cf71a4b150adbabe4fab.setIcon(icon_84d904b84670a230aa457e45549b5014);
+        
+    
+        var popup_b46fcc30193b659c2a02c0c08d01265c = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_9638220bfd51ed62eed78ccf10c88f7d = $(`<div id="html_9638220bfd51ed62eed78ccf10c88f7d" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Vail Pass - CDOT Ya</b><br>                 Provider: CAIC<br>                 Lat: 39.57861, Lon: -106.24722<br>                 Elevation: 10250 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=CAVLP&date=2024-09-04+12:07&unit=e&area=caic&title=Vail+Pass+-+CDOT+Yard+%28CAIC%29+10250+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=CAVLP&date=2024-09-04+12:07&elev=10250&unit=e&area=caic&title=Vail+Pass+-+CDOT+Yard+%28CAIC%29+10250+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Vail+Pass+-+CDOT+Yard+%28CAIC%29+10250+ft&st=CAVLP&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Vail+Pass+-+CDOT+Yard+%28CAIC%29+10250+ft&st=CAVLP&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_b46fcc30193b659c2a02c0c08d01265c.setContent(html_9638220bfd51ed62eed78ccf10c88f7d);
+            
+        
+
+        marker_060e62dc3433cf71a4b150adbabe4fab.bindPopup(popup_b46fcc30193b659c2a02c0c08d01265c)
+        ;
+
+        
+    
+    
+            marker_060e62dc3433cf71a4b150adbabe4fab.bindTooltip(
+                `<div>
+                     Vail Pass - CDOT Ya
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6e269f95bdd0f7b144886431540af202 = L.marker(
+                [39.61676, -106.38006],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_68e869f488e5c48471fc1856b05268c5 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_6e269f95bdd0f7b144886431540af202.setIcon(icon_68e869f488e5c48471fc1856b05268c5);
+        
+    
+        var popup_9a5f53571b0937d559c0fac37f53867f = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_d6e5df3336f82dadfc6e49f5f282461b = $(`<div id="html_d6e5df3336f82dadfc6e49f5f282461b" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Vail Mountain</b><br>                 Provider: SNOTEL<br>                 Lat: 39.61676, Lon: -106.38006<br>                 Elevation: 10300 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=VLMC2&date=2024-09-04+12:07&unit=e&area=caic&title=Vail+Mountain+%28SNOTEL%29+10300+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=VLMC2&date=2024-09-04+12:07&elev=10300&unit=e&area=caic&title=Vail+Mountain+%28SNOTEL%29+10300+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Vail+Mountain+%28SNOTEL%29+10300+ft&st=VLMC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Vail+Mountain+%28SNOTEL%29+10300+ft&st=VLMC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_9a5f53571b0937d559c0fac37f53867f.setContent(html_d6e5df3336f82dadfc6e49f5f282461b);
+            
+        
+
+        marker_6e269f95bdd0f7b144886431540af202.bindPopup(popup_9a5f53571b0937d559c0fac37f53867f)
+        ;
+
+        
+    
+    
+            marker_6e269f95bdd0f7b144886431540af202.bindTooltip(
+                `<div>
+                     Vail Mountain
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_509f7b14aa30cec930fc7a77e27a8838 = L.marker(
+                [39.61751, -106.38004],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_a4031a7202a8ecca97c4c054cc9aee05 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_509f7b14aa30cec930fc7a77e27a8838.setIcon(icon_a4031a7202a8ecca97c4c054cc9aee05);
+        
+    
+        var popup_c72bd7627f0e7359ff681ca4cc2b9ea1 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_8867c4e22717ae6a3e99aedd01e8f8b9 = $(`<div id="html_8867c4e22717ae6a3e99aedd01e8f8b9" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Vail SA - Mid-Mtn</b><br>                 Provider: VailResort<br>                 Lat: 39.61751, Lon: -106.38004<br>                 Elevation: 10303 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=CAVMM&date=2024-09-04+12:07&unit=e&area=caic&title=Vail+SA+-+Mid-Mtn+%28VailResort%29+10303+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=CAVMM&date=2024-09-04+12:07&elev=10303&unit=e&area=caic&title=Vail+SA+-+Mid-Mtn+%28VailResort%29+10303+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Vail+SA+-+Mid-Mtn+%28VailResort%29+10303+ft&st=CAVMM&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Vail+SA+-+Mid-Mtn+%28VailResort%29+10303+ft&st=CAVMM&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_c72bd7627f0e7359ff681ca4cc2b9ea1.setContent(html_8867c4e22717ae6a3e99aedd01e8f8b9);
+            
+        
+
+        marker_509f7b14aa30cec930fc7a77e27a8838.bindPopup(popup_c72bd7627f0e7359ff681ca4cc2b9ea1)
+        ;
+
+        
+    
+    
+            marker_509f7b14aa30cec930fc7a77e27a8838.bindTooltip(
+                `<div>
+                     Vail SA - Mid-Mtn
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_90d9ac1ea7eb55a6816c3f7427d49ab0 = L.marker(
+                [39.864, -106.4246],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_af31e8ccf4395c6c6867475994a6d1e7 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_90d9ac1ea7eb55a6816c3f7427d49ab0.setIcon(icon_af31e8ccf4395c6c6867475994a6d1e7);
+        
+    
+        var popup_91a844e5164d6c474abcbdc78b09e5a8 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_18f10d90168541efed8e15d36bebfea2 = $(`<div id="html_18f10d90168541efed8e15d36bebfea2" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Elliot Ridge</b><br>                 Provider: SNOTEL<br>                 Lat: 39.864, Lon: -106.4246<br>                 Elevation: 10520 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=ELRC2&date=2024-09-04+12:07&unit=e&area=caic&title=Elliot+Ridge+%28SNOTEL%29+10520+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=ELRC2&date=2024-09-04+12:07&elev=10520&unit=e&area=caic&title=Elliot+Ridge+%28SNOTEL%29+10520+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Elliot+Ridge+%28SNOTEL%29+10520+ft&st=ELRC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Elliot+Ridge+%28SNOTEL%29+10520+ft&st=ELRC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_91a844e5164d6c474abcbdc78b09e5a8.setContent(html_18f10d90168541efed8e15d36bebfea2);
+            
+        
+
+        marker_90d9ac1ea7eb55a6816c3f7427d49ab0.bindPopup(popup_91a844e5164d6c474abcbdc78b09e5a8)
+        ;
+
+        
+    
+    
+            marker_90d9ac1ea7eb55a6816c3f7427d49ab0.bindTooltip(
+                `<div>
+                     Elliot Ridge
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_081b3f7e25eef2b5f8800ac9b3b17dd3 = L.marker(
+                [39.48954, -106.17095],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_aa1f0398c20e4ea8ff023a2a966e6e27 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_081b3f7e25eef2b5f8800ac9b3b17dd3.setIcon(icon_aa1f0398c20e4ea8ff023a2a966e6e27);
+        
+    
+        var popup_a0624194d9bdc04d888631e74123a9af = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_851df74d2fc8833785ebe414d11c7d7b = $(`<div id="html_851df74d2fc8833785ebe414d11c7d7b" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Copper Mountain</b><br>                 Provider: SNOTEL<br>                 Lat: 39.48954, Lon: -106.17095<br>                 Elevation: 10550 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=CPMC2&date=2024-09-04+12:07&unit=e&area=caic&title=Copper+Mountain+%28SNOTEL%29+10550+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=CPMC2&date=2024-09-04+12:07&elev=10550&unit=e&area=caic&title=Copper+Mountain+%28SNOTEL%29+10550+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Copper+Mountain+%28SNOTEL%29+10550+ft&st=CPMC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Copper+Mountain+%28SNOTEL%29+10550+ft&st=CPMC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_a0624194d9bdc04d888631e74123a9af.setContent(html_851df74d2fc8833785ebe414d11c7d7b);
+            
+        
+
+        marker_081b3f7e25eef2b5f8800ac9b3b17dd3.bindPopup(popup_a0624194d9bdc04d888631e74123a9af)
+        ;
+
+        
+    
+    
+            marker_081b3f7e25eef2b5f8800ac9b3b17dd3.bindTooltip(
+                `<div>
+                     Copper Mountain
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_16826d276ebd5c77577c7f6b8a2002b2 = L.marker(
+                [39.52958, -106.21687],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_e0272e431fab7f186fb13fb1c6a4ef97 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_16826d276ebd5c77577c7f6b8a2002b2.setIcon(icon_e0272e431fab7f186fb13fb1c6a4ef97);
+        
+    
+        var popup_121666c27f51bf1d0f41e73bc508b8b7 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_944134d5dc5e36181927862bfa1d5b00 = $(`<div id="html_944134d5dc5e36181927862bfa1d5b00" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Vail Pass</b><br>                 Provider: CDOT<br>                 Lat: 39.52958, Lon: -106.21687<br>                 Elevation: 10582 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=CO070&date=2024-09-04+12:07&unit=e&area=caic&title=Vail+Pass+%28CDOT%29+10582+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=CO070&date=2024-09-04+12:07&elev=10582&unit=e&area=caic&title=Vail+Pass+%28CDOT%29+10582+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Vail+Pass+%28CDOT%29+10582+ft&st=CO070&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Vail+Pass+%28CDOT%29+10582+ft&st=CO070&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_121666c27f51bf1d0f41e73bc508b8b7.setContent(html_944134d5dc5e36181927862bfa1d5b00);
+            
+        
+
+        marker_16826d276ebd5c77577c7f6b8a2002b2.bindPopup(popup_121666c27f51bf1d0f41e73bc508b8b7)
+        ;
+
+        
+    
+    
+            marker_16826d276ebd5c77577c7f6b8a2002b2.bindTooltip(
+                `<div>
+                     Vail Pass
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6cdc1f007c361188c67334de3fe650b3 = L.marker(
+                [39.67405, -105.96589],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_4ea72bc1a3b973dd535f97f0cdd9079d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_6cdc1f007c361188c67334de3fe650b3.setIcon(icon_4ea72bc1a3b973dd535f97f0cdd9079d);
+        
+    
+        var popup_32141fdea4d6703ec892b3b58a9519a0 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_ea5c435005354d9eb29dc545259cfa44 = $(`<div id="html_ea5c435005354d9eb29dc545259cfa44" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>1.7 mi W of EJMT -</b><br>                 Provider: CDOT<br>                 Lat: 39.67405, Lon: -105.96589<br>                 Elevation: 10610 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=CO157&date=2024-09-04+12:07&unit=e&area=caic&title=1.7+mi+W+of+EJMT+-+Upper+RTR+%28CDOT%29+10610+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=CO157&date=2024-09-04+12:07&elev=10610&unit=e&area=caic&title=1.7+mi+W+of+EJMT+-+Upper+RTR+%28CDOT%29+10610+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=1.7+mi+W+of+EJMT+-+Upper+RTR+%28CDOT%29+10610+ft&st=CO157&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=1.7+mi+W+of+EJMT+-+Upper+RTR+%28CDOT%29+10610+ft&st=CO157&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_32141fdea4d6703ec892b3b58a9519a0.setContent(html_ea5c435005354d9eb29dc545259cfa44);
+            
+        
+
+        marker_6cdc1f007c361188c67334de3fe650b3.bindPopup(popup_32141fdea4d6703ec892b3b58a9519a0)
+        ;
+
+        
+    
+    
+            marker_6cdc1f007c361188c67334de3fe650b3.bindTooltip(
+                `<div>
+                     1.7 mi W of EJMT -
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_9be621f526296b83f16d41ff753c761a = L.marker(
+                [39.59772, -106.33835],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_d947f7afb340b80e2b9bc5a473140f80 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_9be621f526296b83f16d41ff753c761a.setIcon(icon_d947f7afb340b80e2b9bc5a473140f80);
+        
+    
+        var popup_757204ee4710b4a08449ad5cbff992e5 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_f9156ce36c0c17930131e536f19c0757 = $(`<div id="html_f9156ce36c0c17930131e536f19c0757" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Vail SA - China Bow</b><br>                 Provider: VailResort<br>                 Lat: 39.59772, Lon: -106.33835<br>                 Elevation: 11031 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=CAVCB&date=2024-09-04+12:07&unit=e&area=caic&title=Vail+SA+-+China+Bowl+%28VailResort%29+11031+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=CAVCB&date=2024-09-04+12:07&elev=11031&unit=e&area=caic&title=Vail+SA+-+China+Bowl+%28VailResort%29+11031+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Vail+SA+-+China+Bowl+%28VailResort%29+11031+ft&st=CAVCB&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Vail+SA+-+China+Bowl+%28VailResort%29+11031+ft&st=CAVCB&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_757204ee4710b4a08449ad5cbff992e5.setContent(html_f9156ce36c0c17930131e536f19c0757);
+            
+        
+
+        marker_9be621f526296b83f16d41ff753c761a.bindPopup(popup_757204ee4710b4a08449ad5cbff992e5)
+        ;
+
+        
+    
+    
+            marker_9be621f526296b83f16d41ff753c761a.bindTooltip(
+                `<div>
+                     Vail SA - China Bow
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d406a11cb85fb2b55172727e658dbbef = L.marker(
+                [39.64631, -105.86973],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_a8adf4489800dfbb6f44221e4353a5d9 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_d406a11cb85fb2b55172727e658dbbef.setIcon(icon_a8adf4489800dfbb6f44221e4353a5d9);
+        
+    
+        var popup_00cb23edcc0311bc4f34e99027a2ca18 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_30111dde5ec7aead7d6012d171bb4aae = $(`<div id="html_30111dde5ec7aead7d6012d171bb4aae" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Grizzly Peak</b><br>                 Provider: SNOTEL<br>                 Lat: 39.64631, Lon: -105.86973<br>                 Elevation: 11100 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=GZPC2&date=2024-09-04+12:07&unit=e&area=caic&title=Grizzly+Peak+%28SNOTEL%29+11100+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=GZPC2&date=2024-09-04+12:07&elev=11100&unit=e&area=caic&title=Grizzly+Peak+%28SNOTEL%29+11100+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Grizzly+Peak+%28SNOTEL%29+11100+ft&st=GZPC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Grizzly+Peak+%28SNOTEL%29+11100+ft&st=GZPC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_00cb23edcc0311bc4f34e99027a2ca18.setContent(html_30111dde5ec7aead7d6012d171bb4aae);
+            
+        
+
+        marker_d406a11cb85fb2b55172727e658dbbef.bindPopup(popup_00cb23edcc0311bc4f34e99027a2ca18)
+        ;
+
+        
+    
+    
+            marker_d406a11cb85fb2b55172727e658dbbef.bindTooltip(
+                `<div>
+                     Grizzly Peak
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_98e0e9e747b2300a7088331a7ff665d8 = L.marker(
+                [39.57106, -106.33239],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_fcd2d7d748f71a6f345734d281662bea = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_98e0e9e747b2300a7088331a7ff665d8.setIcon(icon_fcd2d7d748f71a6f345734d281662bea);
+        
+    
+        var popup_f7fa0ec5ec9b52353b855214bda60168 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_b4320d8eb8e014a033efa4d656ef1cda = $(`<div id="html_b4320d8eb8e014a033efa4d656ef1cda" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Vail SA - Blue Sky</b><br>                 Provider: VailResort<br>                 Lat: 39.57106, Lon: -106.33239<br>                 Elevation: 11109 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=CAVBS&date=2024-09-04+12:07&unit=e&area=caic&title=Vail+SA+-+Blue+Sky+%28VailResort%29+11109+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=CAVBS&date=2024-09-04+12:07&elev=11109&unit=e&area=caic&title=Vail+SA+-+Blue+Sky+%28VailResort%29+11109+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Vail+SA+-+Blue+Sky+%28VailResort%29+11109+ft&st=CAVBS&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Vail+SA+-+Blue+Sky+%28VailResort%29+11109+ft&st=CAVBS&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_f7fa0ec5ec9b52353b855214bda60168.setContent(html_b4320d8eb8e014a033efa4d656ef1cda);
+            
+        
+
+        marker_98e0e9e747b2300a7088331a7ff665d8.bindPopup(popup_f7fa0ec5ec9b52353b855214bda60168)
+        ;
+
+        
+    
+    
+            marker_98e0e9e747b2300a7088331a7ff665d8.bindTooltip(
+                `<div>
+                     Vail SA - Blue Sky
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_894da4eb22ed11d5ace1d28d57389e90 = L.marker(
+                [39.67626, -105.94356],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_51eecd622dcac508ea3276ea512d09d7 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_894da4eb22ed11d5ace1d28d57389e90.setIcon(icon_51eecd622dcac508ea3276ea512d09d7);
+        
+    
+        var popup_1d7aaa9a8441b9068b965a7dc5ee6ba8 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_1b90139d69a5f9ef4b9b3ebb5d0fad72 = $(`<div id="html_1b90139d69a5f9ef4b9b3ebb5d0fad72" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>EJT West Portal</b><br>                 Provider: CDOT<br>                 Lat: 39.67626, Lon: -105.94356<br>                 Elevation: 11126 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=CO126&date=2024-09-04+12:07&unit=e&area=caic&title=EJT+West+Portal+%28CDOT%29+11126+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=CO126&date=2024-09-04+12:07&elev=11126&unit=e&area=caic&title=EJT+West+Portal+%28CDOT%29+11126+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=EJT+West+Portal+%28CDOT%29+11126+ft&st=CO126&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=EJT+West+Portal+%28CDOT%29+11126+ft&st=CO126&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_1d7aaa9a8441b9068b965a7dc5ee6ba8.setContent(html_1b90139d69a5f9ef4b9b3ebb5d0fad72);
+            
+        
+
+        marker_894da4eb22ed11d5ace1d28d57389e90.bindPopup(popup_1d7aaa9a8441b9068b965a7dc5ee6ba8)
+        ;
+
+        
+    
+    
+            marker_894da4eb22ed11d5ace1d28d57389e90.bindTooltip(
+                `<div>
+                     EJT West Portal
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_e6cee39871695e096c8722b024416e45 = L.marker(
+                [39.49841944, -106.2734778],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_3963ce4cfc0f155dc0a65e3dc2d1750f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_e6cee39871695e096c8722b024416e45.setIcon(icon_3963ce4cfc0f155dc0a65e3dc2d1750f);
+        
+    
+        var popup_1750a7bb022de708f7585ac64f0847b0 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_54d8f5dc4102d348962f93f46c856f62 = $(`<div id="html_54d8f5dc4102d348962f93f46c856f62" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Ptarmigan</b><br>                 Provider: USGS<br>                 Lat: 39.49841944, Lon: -106.2734778<br>                 Elevation: 11202 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=USPTA&date=2024-09-04+12:07&unit=e&area=caic&title=Ptarmigan+%28USGS%29+11202+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=USPTA&date=2024-09-04+12:07&elev=11202&unit=e&area=caic&title=Ptarmigan+%28USGS%29+11202+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Ptarmigan+%28USGS%29+11202+ft&st=USPTA&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Ptarmigan+%28USGS%29+11202+ft&st=USPTA&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_1750a7bb022de708f7585ac64f0847b0.setContent(html_54d8f5dc4102d348962f93f46c856f62);
+            
+        
+
+        marker_e6cee39871695e096c8722b024416e45.bindPopup(popup_1750a7bb022de708f7585ac64f0847b0)
+        ;
+
+        
+    
+    
+            marker_e6cee39871695e096c8722b024416e45.bindTooltip(
+                `<div>
+                     Ptarmigan
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_4dc6357ec71aae5f347031dd8f784ec7 = L.marker(
+                [39.60548, -106.35657],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_6810bcccef53c2f4aed48fa2222dfbf2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_4dc6357ec71aae5f347031dd8f784ec7.setIcon(icon_6810bcccef53c2f4aed48fa2222dfbf2);
+        
+    
+        var popup_d38b8cb30d4d1a137f5893bccae708cc = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_45ac012c14943ebada38a46524924a0e = $(`<div id="html_45ac012c14943ebada38a46524924a0e" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Vail SA - PHQ</b><br>                 Provider: VailResort<br>                 Lat: 39.60548, Lon: -106.35657<br>                 Elevation: 11248 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=CAVPQ&date=2024-09-04+12:07&unit=e&area=caic&title=Vail+SA+-+PHQ+%28VailResort%29+11248+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=CAVPQ&date=2024-09-04+12:07&elev=11248&unit=e&area=caic&title=Vail+SA+-+PHQ+%28VailResort%29+11248+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Vail+SA+-+PHQ+%28VailResort%29+11248+ft&st=CAVPQ&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Vail+SA+-+PHQ+%28VailResort%29+11248+ft&st=CAVPQ&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_d38b8cb30d4d1a137f5893bccae708cc.setContent(html_45ac012c14943ebada38a46524924a0e);
+            
+        
+
+        marker_4dc6357ec71aae5f347031dd8f784ec7.bindPopup(popup_d38b8cb30d4d1a137f5893bccae708cc)
+        ;
+
+        
+    
+    
+            marker_4dc6357ec71aae5f347031dd8f784ec7.bindTooltip(
+                `<div>
+                     Vail SA - PHQ
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_12d8d46a208619c06521af9e06461ddb = L.marker(
+                [39.47235278, -106.2628],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_13d409003759700b416962665ba892ab = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_12d8d46a208619c06521af9e06461ddb.setIcon(icon_13d409003759700b416962665ba892ab);
+        
+    
+        var popup_e9e0a1b68067d41d1505ad68e317f361 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_c987cf0ed8746accd18f6503685df68c = $(`<div id="html_c987cf0ed8746accd18f6503685df68c" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Boss Basin</b><br>                 Provider: USGS<br>                 Lat: 39.47235278, Lon: -106.2628<br>                 Elevation: 11259 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=USBBN&date=2024-09-04+12:07&unit=e&area=caic&title=Boss+Basin+%28USGS%29+11259+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=USBBN&date=2024-09-04+12:07&elev=11259&unit=e&area=caic&title=Boss+Basin+%28USGS%29+11259+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Boss+Basin+%28USGS%29+11259+ft&st=USBBN&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Boss+Basin+%28USGS%29+11259+ft&st=USBBN&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_e9e0a1b68067d41d1505ad68e317f361.setContent(html_c987cf0ed8746accd18f6503685df68c);
+            
+        
+
+        marker_12d8d46a208619c06521af9e06461ddb.bindPopup(popup_e9e0a1b68067d41d1505ad68e317f361)
+        ;
+
+        
+    
+    
+            marker_12d8d46a208619c06521af9e06461ddb.bindTooltip(
+                `<div>
+                     Boss Basin
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_2ac6bf745574b0b16c4d939285f739b0 = L.marker(
+                [39.36726, -106.18777],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_e51016b8724c517ab8c24b25f3d9f8bd = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_2ac6bf745574b0b16c4d939285f739b0.setIcon(icon_e51016b8724c517ab8c24b25f3d9f8bd);
+        
+    
+        var popup_681464317c8f1806edadfb107743cf2d = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_5995d23dcceefc1c5d418d4410960e87 = $(`<div id="html_5995d23dcceefc1c5d418d4410960e87" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Fremont Pass</b><br>                 Provider: CDOT<br>                 Lat: 39.36726, Lon: -106.18777<br>                 Elevation: 11318 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=CO121&date=2024-09-04+12:07&unit=e&area=caic&title=Fremont+Pass+%28CDOT%29+11318+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=CO121&date=2024-09-04+12:07&elev=11318&unit=e&area=caic&title=Fremont+Pass+%28CDOT%29+11318+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Fremont+Pass+%28CDOT%29+11318+ft&st=CO121&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Fremont+Pass+%28CDOT%29+11318+ft&st=CO121&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_681464317c8f1806edadfb107743cf2d.setContent(html_5995d23dcceefc1c5d418d4410960e87);
+            
+        
+
+        marker_2ac6bf745574b0b16c4d939285f739b0.bindPopup(popup_681464317c8f1806edadfb107743cf2d)
+        ;
+
+        
+    
+    
+            marker_2ac6bf745574b0b16c4d939285f739b0.bindTooltip(
+                `<div>
+                     Fremont Pass
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_03b93e0582ad929434bdea4eb81816dd = L.marker(
+                [39.36055, -106.05994],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_e6e512e1b4b489e4229c2f21572c199b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_03b93e0582ad929434bdea4eb81816dd.setIcon(icon_e6e512e1b4b489e4229c2f21572c199b);
+        
+    
+        var popup_3720fd44ba3fe5e41c8708d61a94345f = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_3169a5005764e20cb1818debe559e9ff = $(`<div id="html_3169a5005764e20cb1818debe559e9ff" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Hoosier Pass</b><br>                 Provider: SNOTEL<br>                 Lat: 39.36055, Lon: -106.05994<br>                 Elevation: 11400 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=HOOC2&date=2024-09-04+12:07&unit=e&area=caic&title=Hoosier+Pass+%28SNOTEL%29+11400+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=HOOC2&date=2024-09-04+12:07&elev=11400&unit=e&area=caic&title=Hoosier+Pass+%28SNOTEL%29+11400+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Hoosier+Pass+%28SNOTEL%29+11400+ft&st=HOOC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Hoosier+Pass+%28SNOTEL%29+11400+ft&st=HOOC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_3720fd44ba3fe5e41c8708d61a94345f.setContent(html_3169a5005764e20cb1818debe559e9ff);
+            
+        
+
+        marker_03b93e0582ad929434bdea4eb81816dd.bindPopup(popup_3720fd44ba3fe5e41c8708d61a94345f)
+        ;
+
+        
+    
+    
+            marker_03b93e0582ad929434bdea4eb81816dd.bindTooltip(
+                `<div>
+                     Hoosier Pass
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_acddf60f8c6d720254924d7562d54779 = L.marker(
+                [39.37991, -106.19681],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_ba31ee89cd3e8107db5be22d2639c2dd = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_acddf60f8c6d720254924d7562d54779.setIcon(icon_ba31ee89cd3e8107db5be22d2639c2dd);
+        
+    
+        var popup_b2aa87f3588b18d11eec3dfc78af90b0 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_eda42a0969e8d72d5a0509995283fbde = $(`<div id="html_eda42a0969e8d72d5a0509995283fbde" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Fremont Pass</b><br>                 Provider: SNOTEL<br>                 Lat: 39.37991, Lon: -106.19681<br>                 Elevation: 11400 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=FMTC2&date=2024-09-04+12:07&unit=e&area=caic&title=Fremont+Pass+%28SNOTEL%29+11400+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=FMTC2&date=2024-09-04+12:07&elev=11400&unit=e&area=caic&title=Fremont+Pass+%28SNOTEL%29+11400+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Fremont+Pass+%28SNOTEL%29+11400+ft&st=FMTC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Fremont+Pass+%28SNOTEL%29+11400+ft&st=FMTC2&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_b2aa87f3588b18d11eec3dfc78af90b0.setContent(html_eda42a0969e8d72d5a0509995283fbde);
+            
+        
+
+        marker_acddf60f8c6d720254924d7562d54779.bindPopup(popup_b2aa87f3588b18d11eec3dfc78af90b0)
+        ;
+
+        
+    
+    
+            marker_acddf60f8c6d720254924d7562d54779.bindTooltip(
+                `<div>
+                     Fremont Pass
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_3984c804f9fad8589a91424f5815c4b6 = L.marker(
+                [39.63227, -105.8691],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_a55e25caaaf094701ad89abbe2dc00e8 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_3984c804f9fad8589a91424f5815c4b6.setIcon(icon_a55e25caaaf094701ad89abbe2dc00e8);
+        
+    
+        var popup_192782d8383800d8a83b4c6dd14fd27d = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_854dc5a896a3c42e9436b03755d790f4 = $(`<div id="html_854dc5a896a3c42e9436b03755d790f4" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>A-Basin SA-MidMtn</b><br>                 Provider: A-BasinSA<br>                 Lat: 39.63227, Lon: -105.8691<br>                 Elevation: 11660 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=CAABM&date=2024-09-04+12:07&unit=e&area=caic&title=A-Basin+SA-MidMtn+%28A-BasinSA%29+11660+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=CAABM&date=2024-09-04+12:07&elev=11660&unit=e&area=caic&title=A-Basin+SA-MidMtn+%28A-BasinSA%29+11660+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=A-Basin+SA-MidMtn+%28A-BasinSA%29+11660+ft&st=CAABM&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=A-Basin+SA-MidMtn+%28A-BasinSA%29+11660+ft&st=CAABM&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_192782d8383800d8a83b4c6dd14fd27d.setContent(html_854dc5a896a3c42e9436b03755d790f4);
+            
+        
+
+        marker_3984c804f9fad8589a91424f5815c4b6.bindPopup(popup_192782d8383800d8a83b4c6dd14fd27d)
+        ;
+
+        
+    
+    
+            marker_3984c804f9fad8589a91424f5815c4b6.bindTooltip(
+                `<div>
+                     A-Basin SA-MidMtn
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f501435375fd650c36bbbeb60004f2e3 = L.marker(
+                [39.63334, -105.8787],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_78e25a2add1eaa328f0a821d0735ddfc = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_f501435375fd650c36bbbeb60004f2e3.setIcon(icon_78e25a2add1eaa328f0a821d0735ddfc);
+        
+    
+        var popup_986a29f098b053933b764c08f8289ca6 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_076c5d802d6131173a92f3fb332728b3 = $(`<div id="html_076c5d802d6131173a92f3fb332728b3" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>A-Basin SA-Pali</b><br>                 Provider: A-BasinSA<br>                 Lat: 39.63334, Lon: -105.8787<br>                 Elevation: 11920 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=CAABP&date=2024-09-04+12:07&unit=e&area=caic&title=A-Basin+SA-Pali+%28A-BasinSA%29+11920+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=CAABP&date=2024-09-04+12:07&elev=11920&unit=e&area=caic&title=A-Basin+SA-Pali+%28A-BasinSA%29+11920+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=A-Basin+SA-Pali+%28A-BasinSA%29+11920+ft&st=CAABP&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=A-Basin+SA-Pali+%28A-BasinSA%29+11920+ft&st=CAABP&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_986a29f098b053933b764c08f8289ca6.setContent(html_076c5d802d6131173a92f3fb332728b3);
+            
+        
+
+        marker_f501435375fd650c36bbbeb60004f2e3.bindPopup(popup_986a29f098b053933b764c08f8289ca6)
+        ;
+
+        
+    
+    
+            marker_f501435375fd650c36bbbeb60004f2e3.bindTooltip(
+                `<div>
+                     A-Basin SA-Pali
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_2a8e3254afb089e2840eb866992ba494 = L.marker(
+                [39.47523, -106.15228],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_546412259212b0dcc2f8e8dc8dce483e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_2a8e3254afb089e2840eb866992ba494.setIcon(icon_546412259212b0dcc2f8e8dc8dce483e);
+        
+    
+        var popup_e117ffb091e5ee220b7a0f1db60a50f5 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_2e9d5154cc2ad9ce2a516b8bde0e8989 = $(`<div id="html_2e9d5154cc2ad9ce2a516b8bde0e8989" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>Copper Mountain</b><br>                 Provider: METAR<br>                 Lat: 39.47523, Lon: -106.15228<br>                 Elevation: 12074 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=KCCU&date=2024-09-04+12:07&unit=e&area=caic&title=Copper+Mountain+%28METAR%29+12074+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=KCCU&date=2024-09-04+12:07&elev=12074&unit=e&area=caic&title=Copper+Mountain+%28METAR%29+12074+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Copper+Mountain+%28METAR%29+12074+ft&st=KCCU&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=Copper+Mountain+%28METAR%29+12074+ft&st=KCCU&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_e117ffb091e5ee220b7a0f1db60a50f5.setContent(html_2e9d5154cc2ad9ce2a516b8bde0e8989);
+            
+        
+
+        marker_2a8e3254afb089e2840eb866992ba494.bindPopup(popup_e117ffb091e5ee220b7a0f1db60a50f5)
+        ;
+
+        
+    
+    
+            marker_2a8e3254afb089e2840eb866992ba494.bindTooltip(
+                `<div>
+                     Copper Mountain
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_40925670bad1eb114ffc6cf6433a48b6 = L.marker(
+                [39.62455, -105.8763],
+                {}
+            ).addTo(feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a);
+        
+    
+            var icon_2cf3d9e58e000659073659d6bd681e5d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_40925670bad1eb114ffc6cf6433a48b6.setIcon(icon_2cf3d9e58e000659073659d6bd681e5d);
+        
+    
+        var popup_dcfec95d55c6b18c12adf781f3ee87ac = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_685bc0d0269612c94ae6c4d15510eda5 = $(`<div id="html_685bc0d0269612c94ae6c4d15510eda5" style="width: 100.0%; height: 100.0%;">             <div style="width:300px;">                 <b>A-Basin SA-Summit</b><br>                 Provider: A-BasinSA<br>                 Lat: 39.62455, Lon: -105.8763<br>                 Elevation: 12462 ft<br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/station.php?plot=hourly&st=CAABT&date=2024-09-04+12:07&unit=e&area=caic&title=A-Basin+SA-Summit+%28A-BasinSA%29+12462+ft" target="_blank">Current Weather</a><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/windrose.php?st=CAABT&date=2024-09-04+12:07&elev=12462&unit=e&area=caic&title=A-Basin+SA-Summit+%28A-BasinSA%29+12462+ft" target="_blank">Current Windrose</a><br>                 <img src="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=A-Basin+SA-Summit+%28A-BasinSA%29+12462+ft&st=CAABT&date=2024-09-04+12:07&unit=e&area=caic&range=48" alt="Weather Plot" style="width:100%; max-width:100%;"><br>                 <a href="https://classic.avalanche.state.co.us/caic/obs_stns/hplot.php?title=A-Basin+SA-Summit+%28A-BasinSA%29+12462+ft&st=CAABT&date=2024-09-04+12:07&unit=e&area=caic&range=48" target="_blank">Open Full Weather Plot</a>             </div>             </div>`)[0];
+                popup_dcfec95d55c6b18c12adf781f3ee87ac.setContent(html_685bc0d0269612c94ae6c4d15510eda5);
+            
+        
+
+        marker_40925670bad1eb114ffc6cf6433a48b6.bindPopup(popup_dcfec95d55c6b18c12adf781f3ee87ac)
+        ;
+
+        
+    
+    
+            marker_40925670bad1eb114ffc6cf6433a48b6.bindTooltip(
+                `<div>
+                     A-Basin SA-Summit
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a.addTo(map_6558e9a703e1f835772dd500b94d2bf8);
+        
+    
+            var feature_group_27b36f77925b9e013ff3599c10f4ad0b = L.featureGroup(
+                {}
+            );
+        
+    
+            var marker_5c7287946c06c50c0769bb52f31194ba = L.marker(
+                [39.6324, -105.869],
+                {}
+            ).addTo(feature_group_27b36f77925b9e013ff3599c10f4ad0b);
+        
+    
+            var icon_6cd1f5dfe5c8a478fb03eed433d44178 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "cloud", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_5c7287946c06c50c0769bb52f31194ba.setIcon(icon_6cd1f5dfe5c8a478fb03eed433d44178);
+        
+    
+        var popup_225b896cea93411e190cc1ee500103c0 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_001a608f8728859a6c6213d43a6ec83e = $(`<div id="html_001a608f8728859a6c6213d43a6ec83e" style="width: 100.0%; height: 100.0%;">         <div>             <b>A-Basin Ski Area</b><br>             Lat: 39.6324, Lon: -105.869<br>             Model Elevation: 11066 ft<br>             Forecast Images:<br>             <img src="https://looper.avalanche.state.co.us/weather/ptfcst/wrf/current/FWAB-e.png" alt="WRF Forecast Graph" style="width:100%; max-width:100%;"><br>             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/wrf/current/FWAB-e.png" target="_blank">WRF</a> |             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/wrfhr/current/FWAB-e.png" target="_blank">WRFHR</a> |             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/nam/current/FWAB-e.png" target="_blank">NAM</a>         </div>         </div>`)[0];
+                popup_225b896cea93411e190cc1ee500103c0.setContent(html_001a608f8728859a6c6213d43a6ec83e);
+            
+        
+
+        marker_5c7287946c06c50c0769bb52f31194ba.bindPopup(popup_225b896cea93411e190cc1ee500103c0)
+        ;
+
+        
+    
+    
+            marker_5c7287946c06c50c0769bb52f31194ba.bindTooltip(
+                `<div>
+                     A-Basin Ski Area
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b669c79f2f7e90ab6daee4560b9224af = L.marker(
+                [39.5673, -106.5076],
+                {}
+            ).addTo(feature_group_27b36f77925b9e013ff3599c10f4ad0b);
+        
+    
+            var icon_a3554fdc7cd7ddb6e52de6cf76eda003 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "cloud", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_b669c79f2f7e90ab6daee4560b9224af.setIcon(icon_a3554fdc7cd7ddb6e52de6cf76eda003);
+        
+    
+        var popup_f9b6094895c1fdfe76450978855ffa77 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_6e2e6efbee0d80534d04cd1e0f98cae8 = $(`<div id="html_6e2e6efbee0d80534d04cd1e0f98cae8" style="width: 100.0%; height: 100.0%;">         <div>             <b>Beaver Creek Ski Area</b><br>             Lat: 39.5673, Lon: -106.5076<br>             Model Elevation: 10862 ft<br>             Forecast Images:<br>             <img src="https://looper.avalanche.state.co.us/weather/ptfcst/wrf/current/BC_TOP-e.png" alt="WRF Forecast Graph" style="width:100%; max-width:100%;"><br>             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/wrf/current/BC_TOP-e.png" target="_blank">WRF</a> |             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/wrfhr/current/BC_TOP-e.png" target="_blank">WRFHR</a> |             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/nam/current/BC_TOP-e.png" target="_blank">NAM</a>         </div>         </div>`)[0];
+                popup_f9b6094895c1fdfe76450978855ffa77.setContent(html_6e2e6efbee0d80534d04cd1e0f98cae8);
+            
+        
+
+        marker_b669c79f2f7e90ab6daee4560b9224af.bindPopup(popup_f9b6094895c1fdfe76450978855ffa77)
+        ;
+
+        
+    
+    
+            marker_b669c79f2f7e90ab6daee4560b9224af.bindTooltip(
+                `<div>
+                     Beaver Creek Ski Area
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_9e342198d5ec752f873a315788fda243 = L.marker(
+                [39.4727, -106.1026],
+                {}
+            ).addTo(feature_group_27b36f77925b9e013ff3599c10f4ad0b);
+        
+    
+            var icon_989bcf108d84f1ed2374aa9ad6d09f32 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "cloud", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_9e342198d5ec752f873a315788fda243.setIcon(icon_989bcf108d84f1ed2374aa9ad6d09f32);
+        
+    
+        var popup_869a38e0663fd4a2e7a3bc754e975bcf = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_e20ba52d0330c872ef0ae27670b31a97 = $(`<div id="html_e20ba52d0330c872ef0ae27670b31a97" style="width: 100.0%; height: 100.0%;">         <div>             <b>Breckenridge Ski Area</b><br>             Lat: 39.4727, Lon: -106.1026<br>             Model Elevation: 11587 ft<br>             Forecast Images:<br>             <img src="https://looper.avalanche.state.co.us/weather/ptfcst/wrf/current/BRECKENRDG-e.png" alt="WRF Forecast Graph" style="width:100%; max-width:100%;"><br>             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/wrf/current/BRECKENRDG-e.png" target="_blank">WRF</a> |             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/wrfhr/current/BRECKENRDG-e.png" target="_blank">WRFHR</a> |             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/nam/current/BRECKENRDG-e.png" target="_blank">NAM</a>         </div>         </div>`)[0];
+                popup_869a38e0663fd4a2e7a3bc754e975bcf.setContent(html_e20ba52d0330c872ef0ae27670b31a97);
+            
+        
+
+        marker_9e342198d5ec752f873a315788fda243.bindPopup(popup_869a38e0663fd4a2e7a3bc754e975bcf)
+        ;
+
+        
+    
+    
+            marker_9e342198d5ec752f873a315788fda243.bindTooltip(
+                `<div>
+                     Breckenridge Ski Area
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_4e1219270757c6ed09b853c0421960c8 = L.marker(
+                [39.4843, -106.1555],
+                {}
+            ).addTo(feature_group_27b36f77925b9e013ff3599c10f4ad0b);
+        
+    
+            var icon_9ea1e63dadd0108e9e50c28537f3e4e7 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "cloud", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_4e1219270757c6ed09b853c0421960c8.setIcon(icon_9ea1e63dadd0108e9e50c28537f3e4e7);
+        
+    
+        var popup_a932d1d34bcadea93642aa5d5ae1b8d5 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_31119c1f5c2c8fb2d643feaa7a2c5049 = $(`<div id="html_31119c1f5c2c8fb2d643feaa7a2c5049" style="width: 100.0%; height: 100.0%;">         <div>             <b>Copper Mt Ski Area</b><br>             Lat: 39.4843, Lon: -106.1555<br>             Model Elevation: 10724 ft<br>             Forecast Images:<br>             <img src="https://looper.avalanche.state.co.us/weather/ptfcst/wrf/current/COPPERMTN-e.png" alt="WRF Forecast Graph" style="width:100%; max-width:100%;"><br>             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/wrf/current/COPPERMTN-e.png" target="_blank">WRF</a> |             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/wrfhr/current/COPPERMTN-e.png" target="_blank">WRFHR</a> |             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/nam/current/COPPERMTN-e.png" target="_blank">NAM</a>         </div>         </div>`)[0];
+                popup_a932d1d34bcadea93642aa5d5ae1b8d5.setContent(html_31119c1f5c2c8fb2d643feaa7a2c5049);
+            
+        
+
+        marker_4e1219270757c6ed09b853c0421960c8.bindPopup(popup_a932d1d34bcadea93642aa5d5ae1b8d5)
+        ;
+
+        
+    
+    
+            marker_4e1219270757c6ed09b853c0421960c8.bindTooltip(
+                `<div>
+                     Copper Mt Ski Area
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_8d4e3591ad65e0ec6f1699217232571c = L.marker(
+                [39.5792, -105.9429],
+                {}
+            ).addTo(feature_group_27b36f77925b9e013ff3599c10f4ad0b);
+        
+    
+            var icon_a579bdd4696e5463ec033fe64129d2cf = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "cloud", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_8d4e3591ad65e0ec6f1699217232571c.setIcon(icon_a579bdd4696e5463ec033fe64129d2cf);
+        
+    
+        var popup_c0b32a9280d5c968d85aebec913d7c46 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_afc9d905b8cba2264ac1cf57f60f6b5a = $(`<div id="html_afc9d905b8cba2264ac1cf57f60f6b5a" style="width: 100.0%; height: 100.0%;">         <div>             <b>Keystone Ski Area</b><br>             Lat: 39.5792, Lon: -105.9429<br>             Model Elevation: 10869 ft<br>             Forecast Images:<br>             <img src="https://looper.avalanche.state.co.us/weather/ptfcst/wrf/current/KEYSTONE-e.png" alt="WRF Forecast Graph" style="width:100%; max-width:100%;"><br>             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/wrf/current/KEYSTONE-e.png" target="_blank">WRF</a> |             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/wrfhr/current/KEYSTONE-e.png" target="_blank">WRFHR</a> |             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/nam/current/KEYSTONE-e.png" target="_blank">NAM</a>         </div>         </div>`)[0];
+                popup_c0b32a9280d5c968d85aebec913d7c46.setContent(html_afc9d905b8cba2264ac1cf57f60f6b5a);
+            
+        
+
+        marker_8d4e3591ad65e0ec6f1699217232571c.bindPopup(popup_c0b32a9280d5c968d85aebec913d7c46)
+        ;
+
+        
+    
+    
+            marker_8d4e3591ad65e0ec6f1699217232571c.bindTooltip(
+                `<div>
+                     Keystone Ski Area
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6a1837d4cd6ff163621d86360ee434b0 = L.marker(
+                [39.6637, -105.8788],
+                {}
+            ).addTo(feature_group_27b36f77925b9e013ff3599c10f4ad0b);
+        
+    
+            var icon_75823013041763ae7d48fb9b1d40ace0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "cloud", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_6a1837d4cd6ff163621d86360ee434b0.setIcon(icon_75823013041763ae7d48fb9b1d40ace0);
+        
+    
+        var popup_e73cfdcc855847e751294d1173e3ab1d = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_85cc3441bc337810b641cde15a99b73c = $(`<div id="html_85cc3441bc337810b641cde15a99b73c" style="width: 100.0%; height: 100.0%;">         <div>             <b>Loveland Pass</b><br>             Lat: 39.6637, Lon: -105.8788<br>             Model Elevation: 11856 ft<br>             Forecast Images:<br>             <img src="https://looper.avalanche.state.co.us/weather/ptfcst/wrf/current/LVLNDPASS-e.png" alt="WRF Forecast Graph" style="width:100%; max-width:100%;"><br>             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/wrf/current/LVLNDPASS-e.png" target="_blank">WRF</a> |             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/wrfhr/current/LVLNDPASS-e.png" target="_blank">WRFHR</a> |             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/nam/current/LVLNDPASS-e.png" target="_blank">NAM</a>         </div>         </div>`)[0];
+                popup_e73cfdcc855847e751294d1173e3ab1d.setContent(html_85cc3441bc337810b641cde15a99b73c);
+            
+        
+
+        marker_6a1837d4cd6ff163621d86360ee434b0.bindPopup(popup_e73cfdcc855847e751294d1173e3ab1d)
+        ;
+
+        
+    
+    
+            marker_6a1837d4cd6ff163621d86360ee434b0.bindTooltip(
+                `<div>
+                     Loveland Pass
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a1c778c1284db189339f49b98777e9a1 = L.marker(
+                [39.531, -106.217],
+                {}
+            ).addTo(feature_group_27b36f77925b9e013ff3599c10f4ad0b);
+        
+    
+            var icon_bea38e014043cc7f9d29886c4bf7e9df = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "cloud", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_a1c778c1284db189339f49b98777e9a1.setIcon(icon_bea38e014043cc7f9d29886c4bf7e9df);
+        
+    
+        var popup_c574217a5f5b09427db9e79d9ee9fb67 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_582a0988f9e38f8147d88a794f8279a1 = $(`<div id="html_582a0988f9e38f8147d88a794f8279a1" style="width: 100.0%; height: 100.0%;">         <div>             <b>Vail Pass</b><br>             Lat: 39.531, Lon: -106.217<br>             Model Elevation: 11016 ft<br>             Forecast Images:<br>             <img src="https://looper.avalanche.state.co.us/weather/ptfcst/wrf/current/VAIL_PASS-e.png" alt="WRF Forecast Graph" style="width:100%; max-width:100%;"><br>             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/wrf/current/VAIL_PASS-e.png" target="_blank">WRF</a> |             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/wrfhr/current/VAIL_PASS-e.png" target="_blank">WRFHR</a> |             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/nam/current/VAIL_PASS-e.png" target="_blank">NAM</a>         </div>         </div>`)[0];
+                popup_c574217a5f5b09427db9e79d9ee9fb67.setContent(html_582a0988f9e38f8147d88a794f8279a1);
+            
+        
+
+        marker_a1c778c1284db189339f49b98777e9a1.bindPopup(popup_c574217a5f5b09427db9e79d9ee9fb67)
+        ;
+
+        
+    
+    
+            marker_a1c778c1284db189339f49b98777e9a1.bindTooltip(
+                `<div>
+                     Vail Pass
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_5ce374b3fc76cdd9d39619838e9787c2 = L.marker(
+                [39.5988, -106.3757],
+                {}
+            ).addTo(feature_group_27b36f77925b9e013ff3599c10f4ad0b);
+        
+    
+            var icon_6b20bce413f180fd80c35548c9c39230 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "cloud", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_5ce374b3fc76cdd9d39619838e9787c2.setIcon(icon_6b20bce413f180fd80c35548c9c39230);
+        
+    
+        var popup_6b2481bab55f639d624b4c75069c32e2 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_167b07a71daa46b92f7fbe3bc3ed4462 = $(`<div id="html_167b07a71daa46b92f7fbe3bc3ed4462" style="width: 100.0%; height: 100.0%;">         <div>             <b>Vail Ski Area</b><br>             Lat: 39.5988, Lon: -106.3757<br>             Model Elevation: 10190 ft<br>             Forecast Images:<br>             <img src="https://looper.avalanche.state.co.us/weather/ptfcst/wrf/current/VAILSKI-e.png" alt="WRF Forecast Graph" style="width:100%; max-width:100%;"><br>             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/wrf/current/VAILSKI-e.png" target="_blank">WRF</a> |             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/wrfhr/current/VAILSKI-e.png" target="_blank">WRFHR</a> |             <a href="https://looper.avalanche.state.co.us/weather/ptfcst/nam/current/VAILSKI-e.png" target="_blank">NAM</a>         </div>         </div>`)[0];
+                popup_6b2481bab55f639d624b4c75069c32e2.setContent(html_167b07a71daa46b92f7fbe3bc3ed4462);
+            
+        
+
+        marker_5ce374b3fc76cdd9d39619838e9787c2.bindPopup(popup_6b2481bab55f639d624b4c75069c32e2)
+        ;
+
+        
+    
+    
+            marker_5ce374b3fc76cdd9d39619838e9787c2.bindTooltip(
+                `<div>
+                     Vail Ski Area
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            feature_group_27b36f77925b9e013ff3599c10f4ad0b.addTo(map_6558e9a703e1f835772dd500b94d2bf8);
+        
+    
+            var feature_group_49b7df8e3a85b00b83fc506d7252af97 = L.featureGroup(
+                {}
+            );
+        
+    
+            var marker_36f586bbc8a51d442eef22727b576e6d = L.marker(
+                [39.62271, -105.87304],
+                {}
+            ).addTo(feature_group_49b7df8e3a85b00b83fc506d7252af97);
+        
+    
+            var icon_363a271a22235d186a89dcaef8fb17a4 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "camera", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_36f586bbc8a51d442eef22727b576e6d.setIcon(icon_363a271a22235d186a89dcaef8fb17a4);
+        
+    
+        var popup_72d08365b893ee195efedbc5e7d66970 = L.popup({"maxWidth": 400});
+
+        
+            
+                var html_f7f27052f11451766012b58edf884f69 = $(`<div id="html_f7f27052f11451766012b58edf884f69" style="width: 100.0%; height: 100.0%;">         <div style="width:400px; height:400px;">             <b>A-Basin Zuma Bowl</b><br>             Lat: 39.62271, Lon: -105.87304<br>             <a href="https://ftp.purchus.io/wwwroot/abasin/webcam/abasincam5.jpg" target="_blank">                 <img src="https://ftp.purchus.io/wwwroot/abasin/webcam/abasincam5.jpg" alt="A-Basin Zuma Bowl Webcam"                      style="width:100%; height:300px; object-fit:cover; cursor:pointer;"                      title="Click to open full-size image">             </a>             <p><small>Click the image to open in full size</small></p>         </div>         </div>`)[0];
+                popup_72d08365b893ee195efedbc5e7d66970.setContent(html_f7f27052f11451766012b58edf884f69);
+            
+        
+
+        marker_36f586bbc8a51d442eef22727b576e6d.bindPopup(popup_72d08365b893ee195efedbc5e7d66970)
+        ;
+
+        
+    
+    
+            marker_36f586bbc8a51d442eef22727b576e6d.bindTooltip(
+                `<div>
+                     A-Basin Zuma Bowl
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_aa324bd49485b1671c0d6ed96ff95e1d = L.marker(
+                [39.47583, -106.1519],
+                {}
+            ).addTo(feature_group_49b7df8e3a85b00b83fc506d7252af97);
+        
+    
+            var icon_e1d6bf2d52ebdd6ca1863b9199573c65 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "camera", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_aa324bd49485b1671c0d6ed96ff95e1d.setIcon(icon_e1d6bf2d52ebdd6ca1863b9199573c65);
+        
+    
+        var popup_2a1b9a7a3ac82881b73ff993a4bc63cd = L.popup({"maxWidth": 400});
+
+        
+            
+                var html_c219840d4731ed3b32a0915d10627407 = $(`<div id="html_c219840d4731ed3b32a0915d10627407" style="width: 100.0%; height: 100.0%;">         <div style="width:400px; height:400px;">             <b>Copper Mtn - Excelerator</b><br>             Lat: 39.47583, Lon: -106.1519<br>             <a href="https://b7b.hdrelay.com/cameras/0d6c3cf7-c523-41cf-9e01-0019ed77f9a3/GetOneShot?size=800x450" target="_blank">                 <img src="https://b7b.hdrelay.com/cameras/0d6c3cf7-c523-41cf-9e01-0019ed77f9a3/GetOneShot?size=800x450" alt="Copper Mtn - Excelerator Webcam"                      style="width:100%; height:300px; object-fit:cover; cursor:pointer;"                      title="Click to open full-size image">             </a>             <p><small>Click the image to open in full size</small></p>         </div>         </div>`)[0];
+                popup_2a1b9a7a3ac82881b73ff993a4bc63cd.setContent(html_c219840d4731ed3b32a0915d10627407);
+            
+        
+
+        marker_aa324bd49485b1671c0d6ed96ff95e1d.bindPopup(popup_2a1b9a7a3ac82881b73ff993a4bc63cd)
+        ;
+
+        
+    
+    
+            marker_aa324bd49485b1671c0d6ed96ff95e1d.bindTooltip(
+                `<div>
+                     Copper Mtn - Excelerator
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_5608c410a1b88545f36a8cbb39a53e4e = L.marker(
+                [39.57959, -105.94248],
+                {}
+            ).addTo(feature_group_49b7df8e3a85b00b83fc506d7252af97);
+        
+    
+            var icon_3a41d9b2dc73420cba7d51f8081ebb30 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "camera", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_5608c410a1b88545f36a8cbb39a53e4e.setIcon(icon_3a41d9b2dc73420cba7d51f8081ebb30);
+        
+    
+        var popup_9fe58222e3dfc3b4776c56eaa656acb7 = L.popup({"maxWidth": 400});
+
+        
+            
+                var html_9b1dd34690175cac739039ab39416ff9 = $(`<div id="html_9b1dd34690175cac739039ab39416ff9" style="width: 100.0%; height: 100.0%;">         <div style="width:400px; height:400px;">             <b>Keystone Dercum Mtn</b><br>             Lat: 39.57959, Lon: -105.94248<br>             <a href="https://live9.brownrice.com/cam-images/keystonedercum.jpg" target="_blank">                 <img src="https://live9.brownrice.com/cam-images/keystonedercum.jpg" alt="Keystone Dercum Mtn Webcam"                      style="width:100%; height:300px; object-fit:cover; cursor:pointer;"                      title="Click to open full-size image">             </a>             <p><small>Click the image to open in full size</small></p>         </div>         </div>`)[0];
+                popup_9fe58222e3dfc3b4776c56eaa656acb7.setContent(html_9b1dd34690175cac739039ab39416ff9);
+            
+        
+
+        marker_5608c410a1b88545f36a8cbb39a53e4e.bindPopup(popup_9fe58222e3dfc3b4776c56eaa656acb7)
+        ;
+
+        
+    
+    
+            marker_5608c410a1b88545f36a8cbb39a53e4e.bindTooltip(
+                `<div>
+                     Keystone Dercum Mtn
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_163a8b28019ad296230f4e6bbd212177 = L.marker(
+                [39.57881, -105.9408],
+                {}
+            ).addTo(feature_group_49b7df8e3a85b00b83fc506d7252af97);
+        
+    
+            var icon_17fcc85e428093c8557b094bb53bced2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "camera", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_163a8b28019ad296230f4e6bbd212177.setIcon(icon_17fcc85e428093c8557b094bb53bced2);
+        
+    
+        var popup_804d52c9532f10370cdcc12117aa4077 = L.popup({"maxWidth": 400});
+
+        
+            
+                var html_6bbc8a497cb5518fafd6268f3c43c089 = $(`<div id="html_6bbc8a497cb5518fafd6268f3c43c089" style="width: 100.0%; height: 100.0%;">         <div style="width:400px; height:400px;">             <b>Keystone North Peak</b><br>             Lat: 39.57881, Lon: -105.9408<br>             <a href="https://live9.brownrice.com/cam-images/keystonenorthpeak.jpg" target="_blank">                 <img src="https://live9.brownrice.com/cam-images/keystonenorthpeak.jpg" alt="Keystone North Peak Webcam"                      style="width:100%; height:300px; object-fit:cover; cursor:pointer;"                      title="Click to open full-size image">             </a>             <p><small>Click the image to open in full size</small></p>         </div>         </div>`)[0];
+                popup_804d52c9532f10370cdcc12117aa4077.setContent(html_6bbc8a497cb5518fafd6268f3c43c089);
+            
+        
+
+        marker_163a8b28019ad296230f4e6bbd212177.bindPopup(popup_804d52c9532f10370cdcc12117aa4077)
+        ;
+
+        
+    
+    
+            marker_163a8b28019ad296230f4e6bbd212177.bindTooltip(
+                `<div>
+                     Keystone North Peak
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            feature_group_49b7df8e3a85b00b83fc506d7252af97.addTo(map_6558e9a703e1f835772dd500b94d2bf8);
+        
+    
+            var layer_control_ac9a9b86ef1d0b4302c42e2713c91bff_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_223dfaf5a52ca489f10e565415447116,
+                    "OpenStreetMap" : tile_layer_246757712590816f0f254f92a0cb408e,
+                    "Esri World Imagery" : tile_layer_12ca5d6d05492a9b76355797ddce96ea,
+                    "Esri World Topo Map" : tile_layer_170cf571b1908dfed8847c0824090c0c,
+                },
+                overlays :  {
+                },
+            };
+            let layer_control_ac9a9b86ef1d0b4302c42e2713c91bff = L.control.layers(
+                layer_control_ac9a9b86ef1d0b4302c42e2713c91bff_layers.base_layers,
+                layer_control_ac9a9b86ef1d0b4302c42e2713c91bff_layers.overlays,
+                {"autoZIndex": true, "collapsed": false, "position": "topright"}
+            ).addTo(map_6558e9a703e1f835772dd500b94d2bf8);
+
+        
+    
+
+            L.control.groupedLayers(
+                null,
+                {
+                    "Map Layers" : {
+                        "Weather Stations" : feature_group_8eb6c8a11ddf2580d12686ca5bbb2f9a,
+                        "Forecast Locations" : feature_group_27b36f77925b9e013ff3599c10f4ad0b,
+                        "Webcams" : feature_group_49b7df8e3a85b00b83fc506d7252af97,
+                    },
+                },
+                {"collapsed": false},
+            ).addTo(map_6558e9a703e1f835772dd500b94d2bf8);
+
+        
+    
+            var measure_control_974955f627e414cd58e99856ec84d6ec = new L.Control.Measure(
+                {"position": "topright", "primaryAreaUnit": "sqmeters", "primaryLengthUnit": "meters", "secondaryAreaUnit": "acres", "secondaryLengthUnit": "miles"});
+            map_6558e9a703e1f835772dd500b94d2bf8.addControl(measure_control_974955f627e414cd58e99856ec84d6ec);
+
+            // Workaround for using this plugin with Leaflet>=1.8.0
+            // https://github.com/ljagis/leaflet-measure/issues/171
+            L.Control.Measure.include({
+                _setCaptureMarkerIcon: function () {
+                    // disable autopan
+                    this._captureMarker.options.autoPanOnFocus = false;
+                    // default function
+                    this._captureMarker.setIcon(
+                        L.divIcon({
+                            iconSize: this._map.getSize().multiplyBy(2)
+                        })
+                    );
+                },
+            });
+
+        
+    
+            var mouse_position_32663b11baac526160c70f32af588b53 = new L.Control.MousePosition(
+                {"emptyString": "Unavailable", "lngFirst": false, "numDigits": 5, "position": "bottomright", "prefix": "", "separator": " : "}
+            );
+            mouse_position_32663b11baac526160c70f32af588b53.options["latFormatter"] =
+                undefined;
+            mouse_position_32663b11baac526160c70f32af588b53.options["lngFormatter"] =
+                undefined;
+            map_6558e9a703e1f835772dd500b94d2bf8.addControl(mouse_position_32663b11baac526160c70f32af588b53);
+        
+</script>
+</html>
